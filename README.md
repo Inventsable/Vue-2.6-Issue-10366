@@ -1,6 +1,6 @@
-# Vue/CEP clicking issue via: https://github.com/vuejs/vue/issues/10366
+### Vue/CEP clicking issue: https://github.com/vuejs/vue/issues/10366
 
-> Not reproduceable on Windows
+> Expected behavior shown on Windows 10 & Vue 2.6.1
 > ![](https://thumbs.gfycat.com/RemarkableVeneratedAsiaticgreaterfreshwaterclam-size_restricted.gif)
 
 ## Installation
