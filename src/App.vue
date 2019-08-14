@@ -1,10 +1,15 @@
 <template>
   <div id="app">
     <menus />
-    <div @click="handleClick" class="image-container">
-      <img src="https://vuejs.org/images/icons/favicon-32x32.png" class="image" />
+    <div @click="handleClick('Out')" class="image-container">
+      <img
+        @click="handleClick('In')"
+        src="https://vuejs.org/images/icons/favicon-32x32.png"
+        class="image"
+      />
     </div>
-    <h1 style="user-select: none; cursor: default;">{{ msg }}</h1>
+    <h1 style="user-select: none; cursor: default;">{{ msgIn }}</h1>
+    <h1 style="user-select: none; cursor: default;">{{ msgOut }}</h1>
   </div>
 </template>
 
@@ -16,15 +21,21 @@ export default {
   name: "app",
   data: () => ({
     csInterface: null,
-    clicks: 0
+    clickIn: 0,
+    clickOut: 0
   }),
   components: {
     menus
   },
   computed: {
-    msg() {
-      return this.clicks
-        ? `Clicked ${this.clicks} time${this.clicks > 1 ? "s" : ""}`
+    msgIn() {
+      return this.clickIn
+        ? `Clicked ${this.clickIn} time${this.clickIn > 1 ? "s" : ""}`
+        : "No clicks";
+    },
+    msgOut() {
+      return this.clickOut
+        ? `Clicked ${this.clickOut} time${this.clickOut > 1 ? "s" : ""}`
         : "No clicks";
     }
   },
@@ -38,16 +49,8 @@ export default {
     });
   },
   methods: {
-    handleClick() {
-      return this.clicks++;
-    },
-    dispatchEvent(name, data) {
-      var event = new CSEvent(name, "APPLICATION");
-      event.data = data;
-      this.csInterface.dispatchEvent(event);
-    },
-    loadScript(path) {
-      this.csInterface.evalScript(`$.evalFile('${path}')`);
+    handleClick(type) {
+      return this[`click${type}`]++;
     }
   }
 };
