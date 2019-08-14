@@ -29,8 +29,13 @@ export default {
     }
   },
   mounted() {
+    console.clear();
     this.csInterface = new CSInterface();
     starlette.init();
+
+    document.body.addEventListener("click", e => {
+      console.log(e.timeStamp);
+    });
   },
   methods: {
     handleClick() {
@@ -79,6 +84,8 @@ export default {
   color: var(--color-default);
   font-family: "Open Sans", sans-serif;
   font-size: 10px;
+  height: 100vh;
+  width: 100vw;
 }
 
 #app::-webkit-scrollbar {
